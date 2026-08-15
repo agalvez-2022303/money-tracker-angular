@@ -1,0 +1,31 @@
+<!-- Canvas WebGL de fondo global (persiste entre vistas sin reinicializar el shader) -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-45">
+  <app-shader-background></app-shader-background>
+</div>
+
+<!-- Contenedor Principal con Enrutamiento Dinámico -->
+<div class="min-h-screen flex flex-col relative z-10">
+  @if (currentView() === 'welcome') {
+    <div class="animate-[fade-in_0.35s_ease-out] flex-grow flex flex-col">
+      <app-landing-view 
+        (navigateToLogin)="onNavigate('login')"
+        (showAlert)="showAlert($event)"
+      ></app-landing-view>
+    </div>
+  } @else if (currentView() === 'login') {
+    <div class="animate-[fade-in_0.35s_ease-out] flex-grow flex flex-col">
+      <app-login-view 
+        (navigateBack)="onNavigate('welcome')"
+        (showAlert)="showAlert($event)"
+      ></app-login-view>
+    </div>
+  }
+</div>
+
+<!-- Modal de Alerta Global -->
+@if (alertMessage()) {
+  <app-alert-modal 
+    [message]="alertMessage()" 
+    (close)="closeAlert()"
+  ></app-alert-modal>
+}
