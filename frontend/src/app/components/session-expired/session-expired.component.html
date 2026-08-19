@@ -1,30 +1,44 @@
-<div class="session-expired-container">
-  <div class="expired-card">
-    <div class="expired-icon">
-      <span class="material-symbols-outlined">schedule</span>
-    </div>
-    
-    <h1>Tu tiempo en el espacio se ha terminado</h1>
-    
-    <p class="expired-message">
-      La sesion ha expirado por seguridad. 
-      Vuelve a loggearte para continuar.
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+@for (o of ondas; track o.id) {
+  <div class="click-ripple" [style.left]="o.x + 'px'" [style.top]="o.y + 'px'"></div>
+}
+<div class="scanlines"></div>
+<div class="linea-inferior"></div>
+
+<div class="stars">
+  @for (e of estrellas; track e.id) {
+    <div class="star" [style.left.%]="e.l" [style.top.%]="e.t" [style.width.px]="e.s" [style.height.px]="e.s" [style.--d]="e.d" [style.--dl]="e.dl"></div>
+  }
+</div>
+
+<div class="solar-scene">
+  <div class="saturn"></div>
+  <div class="jupiter"></div>
+  <div class="uranus"></div>
+  <div class="neptune"></div>
+  <div class="mars"></div>
+  <div class="earth"></div>
+  <div class="mercury"></div>
+</div>
+
+<div class="pagina-expirada">
+  <div class="tarjeta-expirada">
+    <img src="assets/logo.png" alt="Money Tracker" class="expirado-logo"/>
+    <div class="expirado-marca">Money Tracker</div>
+
+    <div class="expirado-icono">⏰</div>
+    <h1 class="expirado-titulo">Tu tiempo en el espacio se ha terminado</h1>
+    <p class="expirado-sub">
+      Vuelve a loggearte para continuar
     </p>
-    
-    <button class="login-button" (click)="goToLogin()">
-      <span class="material-symbols-outlined">login</span>
-      Iniciar Sesion
-    </button>
-    
-    <div class="security-note">
-      <span class="material-symbols-outlined">shield</span>
-      <span>Sesion cerrada automaticamente por tu seguridad</span>
+
+    <div class="expirado-acciones">
+      <a class="expirado-boton btn-shimmer" (click)="irALogin()">
+        Iniciar sesión
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </a>
+      <a class="expirado-volver" (click)="irAInicio()">← Volver al inicio</a>
     </div>
-  </div>
-  
-  <div class="background-animation">
-    <div class="floating-shape shape-1"></div>
-    <div class="floating-shape shape-2"></div>
-    <div class="floating-shape shape-3"></div>
   </div>
 </div>
