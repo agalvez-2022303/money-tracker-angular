@@ -1,0 +1,112 @@
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+@for (o of ondas; track o.id) {
+  <div class="click-ripple" [style.left]="o.x + 'px'" [style.top]="o.y + 'px'"></div>
+}
+<div class="scanlines"></div>
+
+<div class="stars">
+  @for (e of estrellas; track e.id) {
+    <div class="star" [style.left.%]="e.l" [style.top.%]="e.t" [style.width.px]="e.s" [style.height.px]="e.s" [style.--d]="e.d" [style.--dl]="e.dl"></div>
+  }
+</div>
+
+<div class="solar-scene">
+  <div class="saturn"></div>
+  <div class="jupiter"></div>
+  <div class="uranus"></div>
+  <div class="neptune"></div>
+  <div class="mars"></div>
+  <div class="earth"></div>
+  <div class="mercury"></div>
+</div>
+
+<div class="pagina">
+  <section class="hero">
+    <img src="assets/logo.png" alt="Money Tracker" class="hero-logo"/>
+    <div class="hero-marca">Money Tracker</div>
+    <h1 class="hero-titulo">Cuentas claras,<br/>usuario contento</h1>
+    <p class="hero-sub">
+      Tu dinero merece un lugar entre las estrellas. Money Tracker te lleva a la luna con control total de tus finanzas, visualización en tiempo real y una experiencia que no encontrarás en ningún otro lado.
+    </p>
+    <a class="hero-cta btn-shimmer" (click)="irALogin()">
+      Empezar ahora
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+    </a>
+    <div class="hero-scroll">↓ Desplázate para conocer más</div>
+  </section>
+
+  <div class="separador-seccion"></div>
+
+  <section class="seccion">
+    <div class="seccion-etiqueta">Sobre el proyecto</div>
+    <h2 class="seccion-titulo">Lleva tus finanzas más allá de la gravedad</h2>
+    <p class="seccion-descripcion">
+      Money Tracker nació de una idea simple: el control financiero no tiene por qué ser aburrido. Diseñado para una nueva generación de usuarios que creen que administrar dinero puede ser tan emocionante como explorar el cosmos.
+    </p>
+    <p class="seccion-descripcion">
+      Registra gastos, visualiza patrones, establece metas y mira cómo tu dinero crece — todo desde una interfaz que se siente como el futuro.
+    </p>
+  </section>
+
+  <section class="seccion">
+    <div class="seccion-etiqueta">Funcionalidades</div>
+    <h2 class="seccion-titulo">Todo lo que necesitas para despegar</h2>
+    <div class="cuadricula-funcionalidades">
+      @for (f of funcionalidades; track f.num) {
+        <div class="tarjeta-funcionalidad">
+          <div class="funcionalidad-numero">{{ f.num }}</div>
+          <div class="funcionalidad-titulo">{{ f.titulo }}</div>
+          <div class="funcionalidad-desc">{{ f.desc }}</div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <div class="separador-seccion"></div>
+
+  <section class="seccion">
+    <div class="fila-estadisticas">
+      <div class="bloque-estadistica">
+        <div class="estadistica-numero">6</div>
+        <div class="estadistica-etiqueta">Planetas en la escena</div>
+      </div>
+      <div class="bloque-estadistica">
+        <div class="estadistica-numero">100%</div>
+        <div class="estadistica-etiqueta">Gratuito para empezar</div>
+      </div>
+      <div class="bloque-estadistica">
+        <div class="estadistica-numero">0</div>
+        <div class="estadistica-etiqueta">Comisiones ocultas</div>
+      </div>
+      <div class="bloque-estadistica">
+        <div class="estadistica-numero">∞</div>
+        <div class="estadistica-etiqueta">Potencial de crecimiento</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="separador-seccion"></div>
+
+  <section class="seccion seccion-cta">
+    <div class="seccion-etiqueta etiqueta-cta">¿Listo para despegar?</div>
+    <h2 class="seccion-titulo titulo-cta">Tu dinero merece una órbita mejor</h2>
+    <p class="seccion-descripcion descripcion-cta">
+      Únete a quienes ya están tomando el control de sus finanzas con estilo. La luna no es el límite — es el punto de partida.
+    </p>
+    <a class="hero-cta btn-shimmer" (click)="irALogin()">
+      Iniciar sesión
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <footer class="pie-pagina">
+    <div class="pie-interno">
+      <div class="pie-izquierda">
+        <img src="assets/logo.png" alt="Money Tracker" class="pie-logo"/>
+        <span class="pie-derechos">© 2026 Money Tracker</span>
+      </div>
+      <span class="pie-lema">Cuentas claras, usuario contento</span>
+    </div>
+  </footer>
+</div>
