@@ -7,12 +7,12 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private authService: AuthService,
+    private servicioAuth: AuthService,
     private router: Router
   ) {}
 
   canActivate(): boolean {
-    if (this.authService.isAuthenticated()) {
+    if (this.servicioAuth.estaAutenticado()) {
       return true;
     }
     this.router.navigate(['/login']);
@@ -25,12 +25,12 @@ export class AuthGuard implements CanActivate {
 })
 export class LoginGuard implements CanActivate {
   constructor(
-    private authService: AuthService,
+    private servicioAuth: AuthService,
     private router: Router
   ) {}
 
   canActivate(): boolean {
-    if (!this.authService.isAuthenticated()) {
+    if (!this.servicioAuth.estaAutenticado()) {
       return true;
     }
     this.router.navigate(['/dashboard']);
