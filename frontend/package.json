@@ -9,7 +9,7 @@
     "test": "ng test"
   },
   "private": true,
-  "packageManager": "npm@11.13.0",
+  "packageManager": "pnpm@11.5.2",
   "dependencies": {
     "@angular/common": "^22.0.0",
     "@angular/compiler": "^22.0.0",
@@ -17,6 +17,10 @@
     "@angular/forms": "^22.0.0",
     "@angular/platform-browser": "^22.0.0",
     "@angular/router": "^22.0.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "autoprefixer": "^10.5.4",
+    "jwt-decode": "^4.0.0",
+    "postcss": "^8.5.26",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

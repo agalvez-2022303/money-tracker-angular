@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Microservicio de autenticacion para Money Tracker",
   "main": "src/index.ts",
+  "packageManager": "pnpm@11.5.2",
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn src/index.ts"
