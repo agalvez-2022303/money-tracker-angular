@@ -1,0 +1,30 @@
+<div class="session-expired-container">
+  <div class="expired-card">
+    <div class="expired-icon">
+      <span class="material-symbols-outlined">schedule</span>
+    </div>
+    
+    <h1>Tu tiempo en el espacio se ha terminado</h1>
+    
+    <p class="expired-message">
+      La sesion ha expirado por seguridad. 
+      Vuelve a loggearte para continuar.
+    </p>
+    
+    <button class="login-button" (click)="goToLogin()">
+      <span class="material-symbols-outlined">login</span>
+      Iniciar Sesion
+    </button>
+    
+    <div class="security-note">
+      <span class="material-symbols-outlined">shield</span>
+      <span>Sesion cerrada automaticamente por tu seguridad</span>
+    </div>
+  </div>
+  
+  <div class="background-animation">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+</div>

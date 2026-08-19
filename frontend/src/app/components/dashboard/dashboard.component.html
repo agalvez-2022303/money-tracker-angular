@@ -1,0 +1,142 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="material-symbols-outlined">account_balance_wallet</span>
+        <span class="logo-text">Money Tracker</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="session-timer">
+        <span class="material-symbols-outlined">timer</span>
+        <span class="timer-text">{{ timeRemaining() }}</span>
+      </div>
+      <div class="user-info">
+        <span class="user-name">{{ user()?.name }}</span>
+        <button class="logout-button" (click)="logout()">
+          <span class="material-symbols-outlined">logout</span>
+          Cerrar Sesion
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="welcome-banner">
+      <h1>Hola, {{ user()?.name }}!</h1>
+      <p>Bienvenido a tu panel de control financiero</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Balance Total</span>
+          <span class="stat-value">Q 2,459,082.00</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon income">
+          <span class="material-symbols-outlined">trending_up</span>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Ingresos del Mes</span>
+          <span class="stat-value">Q 45,000.00</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon expense">
+          <span class="material-symbols-outlined">trending_down</span>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Gastos del Mes</span>
+          <span class="stat-value">Q 12,400.00</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon savings">
+          <span class="material-symbols-outlined">savings</span>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Ahorros</span>
+          <span class="stat-value">Q 32,600.00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="recent-transactions">
+        <h2>Movimientos Recientes</h2>
+        <div class="transaction-list">
+          <div class="transaction-item">
+            <div class="transaction-icon expense">
+              <span class="material-symbols-outlined">storefront</span>
+            </div>
+            <div class="transaction-details">
+              <span class="transaction-name">Servicios Cloud</span>
+              <span class="transaction-date">Hoy, 10:30 AM</span>
+            </div>
+            <span class="transaction-amount expense">-Q 1,240.00</span>
+          </div>
+          <div class="transaction-item">
+            <div class="transaction-icon income">
+              <span class="material-symbols-outlined">payments</span>
+            </div>
+            <div class="transaction-details">
+              <span class="transaction-name">Cliente Retenedor</span>
+              <span class="transaction-date">Ayer, 2:15 PM</span>
+            </div>
+            <span class="transaction-amount income">+Q 15,000.00</span>
+          </div>
+          <div class="transaction-item">
+            <div class="transaction-icon expense">
+              <span class="material-symbols-outlined">restaurant</span>
+            </div>
+            <div class="transaction-details">
+              <span class="transaction-name">Almuerzo Equipo</span>
+              <span class="transaction-date">15 Ago, 12:00 PM</span>
+            </div>
+            <span class="transaction-amount expense">-Q 350.00</span>
+          </div>
+          <div class="transaction-item">
+            <div class="transaction-icon income">
+              <span class="material-symbols-outlined">business_center</span>
+            </div>
+            <div class="transaction-details">
+              <span class="transaction-name">Consultoria</span>
+              <span class="transaction-date">14 Ago, 4:00 PM</span>
+            </div>
+            <span class="transaction-amount income">+Q 8,500.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <h2>Acciones Rapidas</h2>
+        <div class="actions-grid">
+          <button class="action-button">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span>Nuevo Ingreso</span>
+          </button>
+          <button class="action-button">
+            <span class="material-symbols-outlined">remove_circle</span>
+            <span>Nuevo Gasto</span>
+          </button>
+          <button class="action-button">
+            <span class="material-symbols-outlined">bar_chart</span>
+            <span>Reportes</span>
+          </button>
+          <button class="action-button">
+            <span class="material-symbols-outlined">settings</span>
+            <span>Configuracion</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
