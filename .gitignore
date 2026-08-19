@@ -4,3 +4,9 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+backend/src/generated/
+backend/prisma/migrations/
+backend/.agents/
+backend/.claude/
+backend/.windsurf/
+backend/skills-lock.json

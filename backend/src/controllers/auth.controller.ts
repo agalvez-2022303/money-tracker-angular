@@ -1,20 +1,15 @@
+import 'dotenv/config';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import { JWT_SECRET } from '../middleware/auth.middleware';
+import { PrismaClient } from '../generated/prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
 
-interface User {
-  id: string;
-  email: string;
-  password: string;
-  name: string;
-}
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const prisma = new PrismaClient({ adapter });
 
-const users: User[] = [
-  { id: '1', email: 'admin@moneytracker.com', password: 'admin123', name: 'Administrador' },
-  { id: '2', email: 'demo@moneytracker.com', password: 'demo123', name: 'Usuario Demo' }
-];
-
-export const login = (req: Request, res: Response): void => {
+export const login = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -22,27 +17,38 @@ export const login = (req: Request, res: Response): void => {
     return;
   }
 
-  const user = users.find(u => u.email === email && u.password === password);
+  try {
+    const user = await prisma.user.findUnique({ where: { email } });
 
-  if (!user) {
-    res.status(401).json({ error: 'Credenciales invalidas' });
-    return;
-  }
-
-  const token = jwt.sign(
-    { id: user.id, email: user.email, name: user.name },
-    JWT_SECRET,
-    { expiresIn: '2m' }
-  );
-
-  res.json({
-    token,
-    user: {
-      id: user.id,
-      email: user.email,
-      name: user.name
+    if (!user) {
+      res.status(401).json({ error: 'Credenciales invalidas' });
+      return;
     }
-  });
+
+    const validPassword = await bcrypt.compare(password, user.password);
+
+    if (!validPassword) {
+      res.status(401).json({ error: 'Credenciales invalidas' });
+      return;
+    }
+
+    const token = jwt.sign(
+      { id: user.id, email: user.email, name: user.name },
+      JWT_SECRET,
+      { expiresIn: '2m' }
+    );
+
+    res.json({
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Error del servidor' });
+  }
 };
 
 export const verifyToken = (req: Request, res: Response): void => {
@@ -62,7 +68,7 @@ export const verifyToken = (req: Request, res: Response): void => {
   }
 };
 
-export const getProfile = (req: Request, res: Response): void => {
+export const getProfile = async (req: Request, res: Response): Promise<void> => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -73,8 +79,8 @@ export const getProfile = (req: Request, res: Response): void => {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as any;
-    const user = users.find(u => u.id === decoded.id);
-    
+    const user = await prisma.user.findUnique({ where: { id: decoded.id } });
+
     if (!user) {
       res.status(404).json({ error: 'Usuario no encontrado' });
       return;
